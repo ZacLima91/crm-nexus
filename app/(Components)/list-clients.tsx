@@ -6,7 +6,7 @@ import { useDisclosure } from "@heroui/react";
 import { useApi } from "@/providers/api-provider";
 import { ModalUpdate } from "./modal-edit-cliente";
 
-export interface User {
+export interface Client {
   id: string;
   city: string;
   excursao: string;
@@ -32,10 +32,10 @@ export function ListClients() {
   >(null);
 
   const [isOpenUpdate, setIsOpenUpdate] = useState(false);
-  const [clientToEdit, setClientToEdit] = useState<User | null>(null);
+  const [clientToEdit, setClientToEdit] = useState<Client | null>(null);
   
 
-  const handleEditClick = (client: User) => {
+  const handleEditClick = (client: Client) => {
     setClientToEdit(client); // Passa o cliente completo para edição
     setIsOpenUpdate(true); // Abre o modal
   };

@@ -4,18 +4,14 @@ import {
   Bolt,
   Boxes,
   DollarSign,
-  FileLineChart,
   LogOut,
   PackageCheck,
   ShoppingBag,
   UserRound,
   Users,
-  Wallet,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { signOut } from "@/auth";
 import { logoutAction } from "@/lib/logout";
 
 const navItems = [
@@ -35,8 +31,6 @@ const navItems = [
 ];
 
 export function Sidebar() {
-  // Estado para o item ativo
-  const [activeItem, setActiveItem] = useState<string>("");
 
   const handlerLogout = async () => {
     await logoutAction();
@@ -49,12 +43,10 @@ export function Sidebar() {
         <Image src="/logo-nexo.png" alt="crm" width={150} height={70} />
       </div>
       <ul className="w-full flex flex-col mt-2">
-        {navItems.map(({ label, path, Icon }) => (
+        {navItems.map(({ label, Icon }) => (
           <li
             key={label}
-            className={`relative w-full hover:bg-blue-500 hover:text-white text-gray-600 rounded-l-lg ${
-              activeItem === path ? "bg-primary text-white" : ""
-            }`}
+            className={`relative w-full hover:bg-blue-500 hover:text-white text-gray-600 rounded-l-lg `}
           >
             <Link
               href={label !== "Sair" ? "/denied" : "#"}

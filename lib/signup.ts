@@ -35,7 +35,6 @@ export async function createUserAction(prevState: any, formData: FormData) {
     return { message: "Por favor, preenchar os dados corretamente." };
   }
 
-
   // Verifica se o usuário já existe
   const existingUser = await prisma.user.findUnique({
     where: { userName },

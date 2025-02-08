@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import { PrismaClient } from "@prisma/client";
 import { ListClients } from "../(Components)/list-clients";
 import { TopBar } from "../(Components)/top-bar";
 import { UtilityBar } from "../(Components)/utility-bar";

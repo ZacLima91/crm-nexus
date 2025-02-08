@@ -1,15 +1,11 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState } from "react";
 import Form from "next/form";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { loginAction } from "@/lib/signin";
 
 export function FormAuth() {
-  const [renderLogin, setRenderLogin] = useState<boolean>(true);
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [state, formAction, isPending] = useActionState(
     loginAction,
     {message: ""}
@@ -18,7 +14,7 @@ export function FormAuth() {
   return (
     <>
       <div className="max-w-md w-full">
-        <h1 className="text-4xl font-bold text-center text-gray-900">
+        <h1 className="text-4xl font-bold text-center text-gray-700">
           Nexus CRM
         </h1>
         <p className="text-gray-600 mt-2 text-center">
@@ -29,7 +25,7 @@ export function FormAuth() {
           <Form
             action={formAction}
           >
-            <h2 className="text-2xl text-gray-900 font-semibold mb-4">
+            <h2 className="text-2xl text-gray-700 font-semibold mb-4">
               Faça Login
             </h2>
 
@@ -62,7 +58,7 @@ export function FormAuth() {
           <p className="text-center text-sm text-gray-500 mt-4">
             Não tem uma conta?{" "}
             <a
-              onClick={() => setRenderLogin(false)}
+             
               className="text-[#5174ea] hover:underline"
             >
               Inscreva-se

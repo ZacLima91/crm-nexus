@@ -57,6 +57,7 @@ export async function PATCH(request: NextRequest,  { params }: { params: Promise
       status: 200,
       statusText: 'OK',
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     // Lidar com erros do Prisma
     return handlePrismaError(error, 500, 'Internal Server Error');
@@ -66,7 +67,7 @@ export async function PATCH(request: NextRequest,  { params }: { params: Promise
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
-    const user = await prisma.client.delete({
+   await prisma.client.delete({
       where: {
         id,
       },
@@ -76,6 +77,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
       status: 204,
       statusText: 'No Content',
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return handlePrismaError(error, 404, 'Not Found');
   }

@@ -44,7 +44,7 @@ type ApiContextType = {
     phone: string;
     sector: string;
     vacancy: string;
-    userId: string
+    userId: string;
   }[]; // Apenas ids dos clientes selecionados
   setSelectedClients: Dispatch<
     SetStateAction<
@@ -57,8 +57,7 @@ type ApiContextType = {
         phone: string;
         sector: string;
         vacancy: string;
-        userId: string
-        
+        userId: string;
       }[]
     >
   >;

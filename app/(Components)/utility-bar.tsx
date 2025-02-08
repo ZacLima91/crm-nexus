@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useRef, RefObject, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Printer, UserRoundPlus } from "lucide-react";
-import ReactToPrint, { useReactToPrint } from "react-to-print";
+import  { useReactToPrint } from "react-to-print";
 import { ModalCreate } from "./modal-create-cliente";
 import { useApi } from "@/providers/api-provider";
 import Image from "next/image";
