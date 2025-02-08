@@ -35,8 +35,34 @@ type ApiContextType = {
   setSearchTerm: Dispatch<SetStateAction<string>>;
   filteredClients: Client[];
   handleCheckboxChange: (id: string) => void;
-  selectedClients: string[]; // Agora é um array de strings (IDs dos clientes)
-  setSelectedClients: Dispatch<SetStateAction<string[]>>; // Atualizado para lidar com um array de IDs
+  selectedClients: {
+    name: string;
+    id: string;
+    city: string;
+    excursao: string;
+    observation: string;
+    phone: string;
+    sector: string;
+    vacancy: string;
+    userId: string;
+  }[]; // Apenas ids dos clientes selecionados
+  setSelectedClients: Dispatch<
+    SetStateAction<
+      {
+        name: string;
+        id: string;
+        city: string;
+        excursao: string;
+        observation: string;
+        phone: string;
+        sector: string;
+        vacancy: string;
+        userId: string;
+        createdAt: Date;
+        updatedAt: Date;
+      }[]
+    >
+  >;
 };
 
 const ApiContext = createContext<ApiContextType | undefined>(undefined);
@@ -54,18 +80,24 @@ export const ApiProvider: React.FC<{ children: ReactNode }> = ({
   const [searchTerm, setSearchTerm] = useState<string>("");
   const totalClients = clients.length;
 
-  // Alterado para string[], já que queremos armazenar apenas os IDs
-  const [selectedClients, setSelectedClients] = useState<string[]>([]);
+  // Alterado para string[], já que queremos armazenar apenas os ids
+  const [selectedClients, setSelectedClients] = useState<Client[]>([]);
 
   const handleCheckboxChange = (id: string) => {
     setSelectedClients((prevSelectedClients) => {
-      if (prevSelectedClients.includes(id)) {
-        // Se o ID já está selecionado, remova-o
-        return prevSelectedClients.filter((selectedId) => selectedId !== id);
-      } else {
-        // Caso contrário, adicione o ID à lista
-        return [...prevSelectedClients, id];
+      // Encontre o cliente com base no id
+      const client = clients.find((client) => client.id === id);
+      if (client) {
+        // Se o cliente for encontrado, manipule o array de clientes selecionados
+        if (prevSelectedClients.some((selected) => selected.id === client.id)) {
+          return prevSelectedClients.filter(
+            (selected) => selected.id !== client.id
+          );
+        } else {
+          return [...prevSelectedClients, client];
+        }
       }
+      return prevSelectedClients;
     });
   };
 
