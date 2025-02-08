@@ -35,32 +35,8 @@ type ApiContextType = {
   setSearchTerm: Dispatch<SetStateAction<string>>;
   filteredClients: Client[];
   handleCheckboxChange: (id: string) => void;
-  selectedClients: {
-    name: string;
-    id: string;
-    city: string;
-    excursao: string;
-    observation: string;
-    phone: string;
-    sector: string;
-    vacancy: string;
-    userId: string;
-  }[]; // Apenas ids dos clientes selecionados
-  setSelectedClients: Dispatch<
-    SetStateAction<
-      {
-        name: string;
-        id: string;
-        city: string;
-        excursao: string;
-        observation: string;
-        phone: string;
-        sector: string;
-        vacancy: string;
-        userId: string;
-      }[]
-    >
-  >;
+  selectedClients: string[]; // Agora é um array de strings (IDs dos clientes)
+  setSelectedClients: Dispatch<SetStateAction<string[]>>; // Atualizado para lidar com um array de IDs
 };
 
 const ApiContext = createContext<ApiContextType | undefined>(undefined);
@@ -78,29 +54,24 @@ export const ApiProvider: React.FC<{ children: ReactNode }> = ({
   const [searchTerm, setSearchTerm] = useState<string>("");
   const totalClients = clients.length;
 
-  // Alterado para string[], já que queremos armazenar apenas os ids
-  const [selectedClients, setSelectedClients] = useState<Client[]>([]);
+  // Alterado para string[], já que queremos armazenar apenas os IDs
+  const [selectedClients, setSelectedClients] = useState<string[]>([]);
 
   const handleCheckboxChange = (id: string) => {
     setSelectedClients((prevSelectedClients) => {
-      // Encontre o cliente com base no id
-      const client = clients.find((client) => client.id === id);
-      if (client) {
-        // Se o cliente for encontrado, manipule o array de clientes selecionados
-        if (prevSelectedClients.some((selected) => selected.id === client.id)) {
-          return prevSelectedClients.filter(
-            (selected) => selected.id !== client.id
-          );
-        } else {
-          return [...prevSelectedClients, client];
-        }
+      if (prevSelectedClients.includes(id)) {
+        // Se o ID já está selecionado, remova-o
+        return prevSelectedClients.filter((selectedId) => selectedId !== id);
+      } else {
+        // Caso contrário, adicione o ID à lista
+        return [...prevSelectedClients, id];
       }
-      return prevSelectedClients;
     });
   };
 
   console.log(clients);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getClients = async () => {
     const res = await api.get("");
     const data = res.data.users;
@@ -113,7 +84,7 @@ export const ApiProvider: React.FC<{ children: ReactNode }> = ({
       setClients(response);
     };
     getAll();
-  }, []);
+  }, [getClients]);
 
   const filteredClients = clients.filter((cliente) =>
     cliente.name.toLowerCase().includes(searchTerm.toLowerCase())
