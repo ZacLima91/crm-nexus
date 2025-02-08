@@ -20,7 +20,7 @@ const signupSchema = z
 
 const prisma = new PrismaClient();
 
-export async function createUserAction(prevState: undefined, formData: FormData) {
+export async function createUserAction(prevState: {message: string}, formData: FormData) {
   const userName = formData.get("userName") as string;
   const password = formData.get("password") as string;
   const confirmPassword = formData.get("confirmPassword") as string;

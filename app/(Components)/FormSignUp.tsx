@@ -6,7 +6,7 @@ import Form from "next/form";
 import Link from "next/link";
 
 export function FormSignUp() {
-  const [state, formAction, pending] = useActionState(createUserAction, null);
+  const [state, formAction, pending] = useActionState(createUserAction, {message: ""});
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
