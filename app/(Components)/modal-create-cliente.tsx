@@ -9,8 +9,8 @@ interface ModalCreateProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const ModalCreate = ({ setIsOpen, isOpen }: ModalCreateProps) => {
-  const [state, formAction, isPending] = useActionState(submitNewCliente, {
+export const ModalCreate = ({ setIsOpen,  }: ModalCreateProps) => {
+  const [state, formAction] = useActionState(submitNewCliente, {
     success: false,
     message: "",
   });
@@ -29,7 +29,7 @@ export const ModalCreate = ({ setIsOpen, isOpen }: ModalCreateProps) => {
       // Fechar o modal após o sucesso
       setIsOpen(false);
     }
-  }, [state?.success, setClients, setIsOpen]);
+  }, [state?.success, setClients, setIsOpen, getClients]);
 
   return (
     <div className="fixed top-0 left-0  w-full h-screen flex justify-center items-center z-30">

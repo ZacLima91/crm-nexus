@@ -1,15 +1,15 @@
 "use server";
 
+import { Client } from "@/app/(Components)/list-clients";
 import { auth } from "@/auth";
 import { PrismaClient } from "@prisma/client";
-import { getSession } from "next-auth/react";
 
 const prisma = new PrismaClient();
 
 interface PrevState {
   success: boolean;
   message: string;
-  newUser?: any; // Pode ser tipado corretamente se soubermos a estrutura de `newUser`
+  newUser?: Client; // Pode ser tipado corretamente se soubermos a estrutura de `newUser`
   error?: string;
 }
 

@@ -1,18 +1,6 @@
 'use server'
 
-import { z } from 'zod';
 import { prisma } from './utils';
-
-const updateClienteSchema = z.object({
-  id: z.string().min(1), // O id do cliente a ser atualizado
-  name: z.string().min(2).max(100),
-  city: z.string().min(2).max(100),
-  phone: z.string().min(2).max(100),
-  excursao: z.string().min(2).max(100),
-  sector: z.string().min(2).max(100),
-  vacancy: z.string().min(2).max(100),
-  observation: z.string().min(2).max(100),
-});
 
 export async function submitUpdateCliente(_: unknown, formData: FormData) {
   const formValues = {

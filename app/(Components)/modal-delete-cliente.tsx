@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Modal,
@@ -7,11 +7,8 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Textarea,
-  Input,
 } from "@heroui/react";
 import { Client } from "@prisma/client";
-import { useEffect, useState } from "react";
 import { useApi } from "@/providers/api-provider";
 
 interface ModalDeleteProps {
@@ -26,20 +23,16 @@ interface ModalDeleteProps {
 export default function ModalDelete({
   onOpenChange,
   isOpen,
-  onOpen,
-  idClient, 
-  users,
-  updateUsersList
+  idClient,
+  updateUsersList,
 }: ModalDeleteProps) {
-
   const { deleteClient } = useApi();
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
       <ModalContent>
         {(onClose) => {
-
-          const handlerDelete = async()=>{
+          const handlerDelete = async () => {
             try {
               await deleteClient(idClient);
               updateUsersList();
@@ -48,7 +41,7 @@ export default function ModalDelete({
               // Handle error, you might want to show a message to the user
               console.error("Failed to delete client", error);
             }
-          }
+          };
           return (
             <>
               <ModalHeader className="flex flex-col gap-1">
