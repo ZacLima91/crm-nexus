@@ -10,7 +10,6 @@ export interface Client {
   id: string;
   city: string;
   excursao: string;
-  id_: string;
   name: string;
   observation: string;
   phone: string;
@@ -128,7 +127,6 @@ export function ListClients() {
                 className="text-xs text-blue-500 font-semibold hover:underline"
                 onClick={() => handleEditClick({
                   id, name, city, phone, sector, vacancy, excursao, observation,
-                  id_: ""
                 })}
               >
                 Editar

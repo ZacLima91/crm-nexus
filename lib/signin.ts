@@ -4,7 +4,7 @@ import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
 
-export async function loginAction(prevState: undefined, formData: FormData) {
+export async function loginAction(prevState: {message: string}, formData: FormData) {
   const userName = formData.get("userName") as string;
   const password = formData.get("password") as string;
 
