@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { compareSync } from "bcrypt-ts";
+import { compareSync } from "bcryptjs";
 
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { type ClassValue, clsx } from "clsx"

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ModalDelete from "./modal-delete-cliente";
-import { useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@heroui/react";
 import { useApi } from "@/providers/api-provider";
 import { ModalUpdate } from "./modal-edit-cliente";
 

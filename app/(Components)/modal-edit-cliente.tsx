@@ -45,7 +45,7 @@ export const ModalUpdate = ({ setIsOpen, isOpen, clientToEdit, clientId}: ModalC
   return (
     <div className="fixed top-0 left-0  w-full h-screen flex justify-center items-center z-30">
       <div className="fixed w-full h-screen bg-black opacity-50 left-0 top-0 z-40"></div>
-      <div className="flex flex-col w-3/6 h-auto bg-white relative z-50">
+      <div className="flex flex-col w-3/6 h-auto bg-white relative z-50 rounded-md">
         <div className="w-full flex flex-row justify-between px-10 pt-6">
           <h2 className="text-2xl font-bold">{clientToEdit ? 'Editar Usuário' : 'Novo Usuário'}</h2>
           <span className="text-2xl font-bold cursor-pointer" onClick={() => setIsOpen(false)}>X</span>

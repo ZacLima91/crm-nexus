@@ -9,7 +9,7 @@ import {
   Button,
   Textarea,
   Input,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Client } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useApi } from "@/providers/api-provider";

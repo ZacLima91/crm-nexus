@@ -1,6 +1,6 @@
 "use client";
 
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
 import { ApiProvider } from "@/providers/api-provider";
 import { Sidebar } from "../(Components)/Sidebar";
 
@@ -11,14 +11,14 @@ export default function Layout({
 }>) {
   return (
     <ApiProvider>
-      <NextUIProvider>
+      <HeroUIProvider>
         <main className="h-screen overflow-hidden bg-[#e8edfd]">
           <div className="flex">
             <Sidebar />
             {children}
           </div>
         </main>
-      </NextUIProvider>
+      </HeroUIProvider>
     </ApiProvider>
   );
 }

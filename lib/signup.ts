@@ -1,7 +1,7 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
-import { hash } from "bcrypt-ts";
+import { hash } from "bcryptjs";
 import { z } from "zod";
 
 const signupSchema = z
